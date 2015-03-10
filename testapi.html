@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./axis.css">
+<script src="./d3.min.js"></script>
+<script src="./d3bars.js"></script>
+</head>
+<body>
+<script>
+var config = {
+	 top: 20
+	,right: 20 
+	,bottom: 30
+	,left: 40
+	,width: 960
+	,height: 500
+	,label: 'Texto Aqui'
+	,color: 'blue'
+	,hoverColor: 'red'
+}; //objeto de configuracion
+
+var adata = [['J1',10],['J2',30],['J3',50],['J4',10],['J5',14],['J6',10],['J7',10],['J8',7],['J9',13],['J10',10],['J11',12],['J12',32],['J13',40],['J14',15],['J15',27]];
+d.oBar(adata,config);
+</script>
+</body>
+</html>
