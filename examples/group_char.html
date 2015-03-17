@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="../d3.min.js"></script>
+</head>
+<body>
+<!--div id='chartArea'></div-->
+<script>
+var w = 500;
+var h = 300;
+
+// Data
+var dataA = [1, 2, 3, 4, 5];
+var dataB = [5, 4, 3, 2, 1];
+var dataC = [5, 4, 3, 4, 5];
+
+var dataAll = [dataA, dataB, dataC];
+var dataT = d3.transpose(dataAll);
+var groups = dataAll.length;
+
+
+var x = d3.scale.linear()
+    .domain([0, dataT.length])
+    .rangeRound([0, w]);
+var y = d3.scale.linear()
+    .domain([0, 5])
+    .rangeRound([0, h]);
+var groupColor = d3.scale.category10()
+
+
+
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h)
+                        .attr('id','chartArea');
+    
+
+// Drawing the data
+var chart = d3.selectAll('#chartArea')
+    .append('svg')
+
+var month = chart.selectAll('g')
+    .data(dataT)
+    .enter()
+    .append('g')
+    .attr('transform', function (d, i) {
+    return 'translate(' + x(i) + ', 0)';
+});
+
+month.selectAll('rect')
+    .data(function (d) {return d;}) //here we are binding the month list to children 
+.enter()
+    .append('rect')
+    .attr('x', function (d, i) {return x(i / (groups+1));})
+    .attr('y', function (d) {return h - y(d);})
+    .attr('width', function () {return x(1 / (groups+1));})
+    .attr('height', function (d) {return y(d);})
+    .attr('fill', function (d, i) {return groupColor(i);})
+</script>
+</body>
+</html>
